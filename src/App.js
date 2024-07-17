@@ -2,6 +2,7 @@ import { Layout, Menu } from "antd";
 import { useState, useEffect } from "react";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import CreateUserComponent from "./Components/CreateUserComponent";
+import LoginUserComponent from "./Components/LoginUserComponent";
 import { notification as antNotif } from "antd"
 import { backendURL } from "./Globals";
 
@@ -61,7 +62,7 @@ function App() {
               <CreateUserComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/login" element={
-              <p>Login</p>
+              <LoginUserComponent createNotification={createNotification} setLogin={setLogin}/>
             }></Route>
             <Route path="/" element={
               <p>Index</p>
