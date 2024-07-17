@@ -8,6 +8,7 @@ import { backendURL } from "./Globals";
 import ListPresentsComponent from "./Components/ListPresentsComponent";
 import CreatePresentComponent from "./Components/CreatePresentComponent";
 import EditPresentComponent from "./Components/EditPresentComponent";
+import FriendsComponent from "./Components/FriendsComponent";
 
 function App() {
 
@@ -96,7 +97,7 @@ function App() {
               <EditPresentComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/friends" element={
-              <p>Register</p>
+              <FriendsComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/presents/friends" element={
               <p>Gift a friend</p>
