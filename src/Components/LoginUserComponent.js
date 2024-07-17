@@ -50,8 +50,6 @@ let LoginUserComponent = (props) => {
         let jsonData = await response.json()
         if (response.ok) {
             localStorage.setItem("apiKey", jsonData.apiKey)
-            localStorage.setItem("id", jsonData.id)
-            localStorage.setItem("email", jsonData.email)
             setLogin(true)
             navigate("/")
         } else {

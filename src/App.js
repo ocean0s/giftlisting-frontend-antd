@@ -21,9 +21,25 @@ function App() {
     })
   }
 
-  // useEffect( () => {
-  //   setLogin(localStorage.getItem("apiKey") != null) // improve later TODO
-  // }, [])
+  useEffect( () => {
+    checkLogin()
+  }, [])
+
+  let checkLogin = async () => {
+    let apiKey = localStorage.getItem("apiKey")
+    if (apiKey == null) {
+      setLogin(false)
+    } else {
+      let response = await fetch(backendURL + "/friends?apiKey=" + apiKey)
+      if (response.ok)
+        setLogin(true)
+      else{
+        setLogin(false)
+        localStorage.removeItem("apiKey")
+        navigate("/login")
+      }
+    }
+  }
 
   let disconnect = async () => {
     await fetch(backendURL + "/users/disconnect?apiKey=" + localStorage.getItem("apikey"),
