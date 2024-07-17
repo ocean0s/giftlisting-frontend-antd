@@ -11,10 +11,14 @@ let LoginUserComponent = (props) => {
 
     let [email, setEmail] = useState()
     let [password, setPassword] = useState()
-    let [disabled, setDisabled] = useState(false)
+    let [disabled, setDisabled] = useState(true)
     let [error, setError] = useState({})
 
     let navigate = useNavigate()
+
+    useEffect(() => {
+        setDisabled(true)
+    }, [])
 
     useEffect( () => {
         checkErrors()
@@ -27,7 +31,7 @@ let LoginUserComponent = (props) => {
         if (password != undefined && password.length < 5)
             newError.password = "Password too short"
         setError(newError)
-        if (error.email != undefined || error.password != undefined)
+        if ((newError.email != undefined || newError.password != undefined) || email == undefined || password == undefined)
             setDisabled(true)
         else
             setDisabled(false)
@@ -56,7 +60,7 @@ let LoginUserComponent = (props) => {
             if (Array.isArray(jsonData.error)){
                 let error = ""
                 jsonData.error.forEach(element => {
-                    {error += element + "\n"}
+                    {error += element.error + "\n"}
                 });
                 createNotification(error)
             } else 

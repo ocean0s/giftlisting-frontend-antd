@@ -13,8 +13,12 @@ let CreateUserComponent = (props) => {
     let [password, setPassword] = useState()
 
     let navigate = useNavigate()
-    let [disabled, setDisabled] = useState(false)
+    let [disabled, setDisabled] = useState(true)
     let [error, setError] = useState({})
+
+    useEffect(() => {
+        setDisabled(true)
+    }, []) // Sin esto, al volver despues de desconectar, el botón se mantiene activo aunque los campos esten vacios
 
     useEffect( () => {
         checkErrors()
@@ -29,7 +33,7 @@ let CreateUserComponent = (props) => {
         if (username != undefined && username == "")
             newError.username = "Username cannot be empty"
         setError(newError)
-        if (error.email != undefined || error.password != undefined || error.username != undefined)
+        if ((newError.email != undefined || newError.password != undefined || newError.username != undefined) || email == undefined || username == undefined || password == undefined)
             setDisabled(true)
         else
             setDisabled(false)
@@ -58,7 +62,7 @@ let CreateUserComponent = (props) => {
             if (Array.isArray(jsonData.error)){
                 let error = ""
                 jsonData.error.forEach(element => {
-                    {error += element + "\n"}
+                    {error += element.error + "\n"}
                 });
                 createNotification(error)
             } else 

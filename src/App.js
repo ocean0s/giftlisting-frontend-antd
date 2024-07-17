@@ -6,6 +6,8 @@ import LoginUserComponent from "./Components/LoginUserComponent";
 import { notification as antNotif } from "antd"
 import { backendURL } from "./Globals";
 import ListPresentsComponent from "./Components/ListPresentsComponent";
+import CreatePresentComponent from "./Components/CreatePresentComponent";
+import EditPresentComponent from "./Components/EditPresentComponent";
 
 function App() {
 
@@ -88,10 +90,10 @@ function App() {
               <ListPresentsComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/presents/create" element={
-              <p>Present creation</p>
+              <CreatePresentComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/presents/edit/:id" element={
-              <p>Register</p>
+              <EditPresentComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/friends" element={
               <p>Register</p>
