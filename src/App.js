@@ -11,6 +11,7 @@ import EditPresentComponent from "./Components/EditPresentComponent";
 import FriendsComponent from "./Components/FriendsComponent";
 import GiftPresentComponent from "./Components/GiftPresentComponent";
 import IndexComponent from "./Components/IndexComponent";
+import 'antd/dist/reset.css'
 
 function App() {
 
