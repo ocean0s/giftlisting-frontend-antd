@@ -19,10 +19,10 @@ let FriendsComponent = (props) => {
 
     useEffect( () =>  {
         let error = ""
-        if (email != undefined && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
+        if (email != undefined && email != "" && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
             error = "Invalid email"
         setErrorEmail(error) // prevent race condition
-        if (error != "" || email == undefined)
+        if (error != "" || email == undefined || email == "")
             setDisabled(true)
         else
             setDisabled(false)
