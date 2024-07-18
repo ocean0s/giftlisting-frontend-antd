@@ -10,6 +10,7 @@ import CreatePresentComponent from "./Components/CreatePresentComponent";
 import EditPresentComponent from "./Components/EditPresentComponent";
 import FriendsComponent from "./Components/FriendsComponent";
 import GiftPresentComponent from "./Components/GiftPresentComponent";
+import IndexComponent from "./Components/IndexComponent";
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
         <Header>
           {!login ? (
             <Menu theme="dark" mode="horizontal" items={[
+              { key: "menuIndex", label: <Link to="/">Index</Link>},
               { key: "menuRegister", label: <Link to="/register">Register</Link>},
               { key: "menuLogin", label: <Link to="/login">Login</Link>},
             ]}>
@@ -86,7 +88,7 @@ function App() {
               <LoginUserComponent createNotification={createNotification} setLogin={setLogin}/>
             }></Route>
             <Route path="/" element={
-              <p>Index</p>
+              <IndexComponent login={login}/>
             }></Route>
             <Route path="/presents" element={
               <ListPresentsComponent createNotification={createNotification}/>
