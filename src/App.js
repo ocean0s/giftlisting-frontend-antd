@@ -9,6 +9,7 @@ import ListPresentsComponent from "./Components/ListPresentsComponent";
 import CreatePresentComponent from "./Components/CreatePresentComponent";
 import EditPresentComponent from "./Components/EditPresentComponent";
 import FriendsComponent from "./Components/FriendsComponent";
+import GiftPresentComponent from "./Components/GiftPresentComponent";
 
 function App() {
 
@@ -100,7 +101,7 @@ function App() {
               <FriendsComponent createNotification={createNotification}/>
             }></Route>
             <Route path="/presents/friends" element={
-              <p>Gift a friend</p>
+              <GiftPresentComponent createNotification={createNotification}/>
             }></Route>
           </Routes>
         </Content>
