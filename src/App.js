@@ -12,6 +12,7 @@ import FriendsComponent from "./Components/FriendsComponent";
 import GiftPresentComponent from "./Components/GiftPresentComponent";
 import IndexComponent from "./Components/IndexComponent";
 import 'antd/dist/reset.css'
+import ChosenGiftsComponent from "./Components/ChosenGiftsComponent";
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
               { key: "menuCreatePresent", label: <Link to="/presents/create">Create a present</Link>},
               { key: "menuFriends", label: <Link to="/friends">Friends</Link>},
               { key: "menuGift", label: <Link to="/presents/friends">Gift a friend</Link>},
+              { key: "menuChosen", label: <Link to="/presents/gifting">Presents I'm gifting</Link>},
               { key: "menuDisconnect", label: <Link to="#" onClick={disconnect} >Disconnect</Link>},
             ]}>
             </Menu>
@@ -96,6 +98,9 @@ function App() {
             }></Route>
             <Route path="/presents/create" element={
               <CreatePresentComponent createNotification={createNotification}/>
+            }></Route>
+            <Route path="/presents/gifting" element={
+              <ChosenGiftsComponent/>
             }></Route>
             <Route path="/presents/edit/:id" element={
               <EditPresentComponent createNotification={createNotification}/>
