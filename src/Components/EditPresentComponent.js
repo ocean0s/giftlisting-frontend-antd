@@ -44,11 +44,13 @@ let EditPresentComponent = (props) => {
             newError.description = "Description cannot be empty"
         if (item.name != undefined && item.name == "")
             newError.name = "Name cannot be empty"
+        if (item.listName != undefined && item.listName == "")
+            newError.listName = "List name cannot be empty"
         if ((item.price != undefined && isNaN(item.price)) || (!isNaN(item.price) && parseFloat(item.price) <= 0))
             newError.price = "Price has to be a positive number"
         setError(newError)
-        if ((newError.url != undefined || newError.description != undefined || newError.name != undefined || newError.price != undefined)
-             || item.url == undefined || item.description == undefined || item.name == undefined || item.price == undefined)
+        if ((newError.url != undefined || newError.description != undefined || newError.name != undefined || newError.price != undefined || newError.listName != undefined)
+             || item.url == undefined || item.description == undefined || item.name == undefined || item.price == undefined || item.listName == undefined)
             setDisabled(true)
         else
             setDisabled(false)
@@ -62,12 +64,13 @@ let EditPresentComponent = (props) => {
                 url: item.url,
                 name: item.name,
                 description: item.description,
-                price: parseFloat(item.price)
+                price: parseFloat(item.price),
+                listName: item.listName
             })
         })
 
         if (response.ok) {
-            createNotification("Present created successfully")
+            createNotification("Present edited successfully")
             navigate("/presents")
         } else {
             let jsonData = await response.json()
@@ -94,7 +97,8 @@ let EditPresentComponent = (props) => {
                 <Descriptions.Item label="Description" span={3}>{itemOriginal.description}</Descriptions.Item>
                 <Descriptions.Item span={1} label="Price">{itemOriginal.price}</Descriptions.Item>
                 <Descriptions.Item span={2} label="URL">{itemOriginal.url}</Descriptions.Item>
-                <Descriptions.Item label="Chosen by" span={3}>{itemOriginal.chosenBy == null ? "No one yet" : itemOriginal.chosenBy}</Descriptions.Item>
+                <Descriptions.Item label="Chosen by" span={2}>{itemOriginal.chosenBy == null ? "No one yet" : itemOriginal.chosenBy}</Descriptions.Item>
+                <Descriptions.Item label="List" span={1}>{itemOriginal.listName}</Descriptions.Item>
             </Descriptions>
             <Row align="middle" justify="center" style={{minHeight: "70vh"}}>
                 <Col>
@@ -107,6 +111,8 @@ let EditPresentComponent = (props) => {
                         {error.url !== undefined && <Text style={{marginBottom: "8px", display:"inline-block"}} type="danger">{error.url}</Text>}
                         <Input value={item.price} onChange={(e) => changeProperty("price",e)} size="large" type="number" placeholder="Price..." style={{marginBottom: "8px"}}></Input>
                         {error.price !== undefined && <Text style={{marginBottom: "8px", display:"inline-block"}} type="danger">{error.price}</Text>}
+                        <Input value={item.listName} onChange={(e) => changeProperty("listName",e)} size="large" type="text" placeholder="List..." style={{marginBottom: "8px"}}></Input>
+                        {error.listName !== undefined && <Text style={{marginBottom: "8px", display:"inline-block"}} type="danger">{error.listName}</Text>}
                         <Button disabled={disabled} block type="primary" onClick={clickEdit}>Edit present</Button>
                     </Card>
                 </Col>
