@@ -60,6 +60,7 @@ let GiftPresentComponent = (props) => {
         { title: "URL", dataIndex: "url"},
         { title: "Price", dataIndex: "price", render: (p) => (p + " €") },
         { title: "Chosen by", dataIndex: "chosenBy", render: (c) => (c == null ? "No one yet" : c) },
+        { title: "List", dataIndex: "listName" },
         { title: "Actions", dataIndex: "id",
             render: (id, present) => (
                 <>
